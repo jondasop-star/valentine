@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Valentine</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: Poppins, Arial, sans-serif;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f8cdda, #fbc2eb);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .card {
+      background: #fff;
+      width: 100%;
+      max-width: 380px;
+      padding: 28px 20px 36px;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+      position: relative;
+    }
+
+    .cat {
+      font-size: 56px;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      font-size: 20px;
+      margin-bottom: 28px;
+      color: #333;
+    }
+
+    .buttons {
+      position: relative;
+      height: 80px;
+    }
+
+    button {
+      padding: 12px 26px;
+      font-size: 16px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+    }
+
+    #yesBtn {
+      background: #ff5c8a;
+      color: #fff;
+      position: relative;
+      z-index: 2;
+    }
+
+    #noBtn {
+      background: #eaeaea;
+      color: #333;
+      position: absolute;
+      left: 140px;
+      top: 0;
+    }
+
+    .shy-text {
+      margin-top: 18px;
+      font-size: 13px;
+      color: #777;
+    }
+
+    .yay {
+      display: none;
+    }
+
+    .yay h2 {
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+
+    .yay img {
+      width: 100%;
+      border-radius: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+
+  <!-- QUESTION -->
+  <div class="question">
+    <div class="cat">🐱❤️</div>
+    <h1>Taj, will you be my Valentine?</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+
+    <div class="shy-text">Try clicking "No" 😉</div>
+  </div>
+
+  <!-- AFTER YES -->
+  <div class="yay">
+    <div class="cat">🐱❤️</div>
+    <h2>YAY! 🎉</h2>
+
+    <!-- 🔽 YOUR PHOTO GOES HERE -->
+    <img src="photo.jpg" alt="Our moment">
+  </div>
+
+</div>
+
+<script>
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const question = document.querySelector(".question");
+  const yay = document.querySelector(".yay");
+  const card = document.getElementById("card");
+
+  function moveNo() {
+    const rect = card.getBoundingClientRect();
+    const maxX = rect.width - noBtn.offsetWidth - 10;
+    const maxY = rect.height - noBtn.offsetHeight - 10;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }
+
+  noBtn.addEventListener("mouseover", moveNo);
+  noBtn.addEventListener("click", moveNo);
+
+  yesBtn.addEventListener("click", () => {
+    question.style.display = "none";
+    yay.style.display = "block";
+  });
+</script>
+
+</body>
+</html>
